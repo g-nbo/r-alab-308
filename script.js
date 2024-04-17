@@ -53,57 +53,61 @@
 function dataCollection() {
     let data = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26";
     
-    let cell1 = [];
-    let cell2 = [];
-    let cell3 = [];
-    let cell4 = [];
+    let cell1 = "";
+    let cell2 = "";
+    let cell3 = "";
+    let cell4 = "";
 
     let cell = 1;
 
     
 
-    // for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
 
-    //     if (data[i] === ',') {
-    //         cell++;
-    //         continue;
-    //     }
+        if (data[i] === ',') {
+            cell++;
+            continue;
+        }
     
-    //     if (data[i] === "\n") {
-    //         cell = 1;
-    //         cell1 = [];
-    //         cell2 = [];
-    //         cell3 = [];
-    //         cell4 = [];
-    //         continue;
-    //     }
+        if (data[i] === "\n") {
+            cell = 1;
+            cell1 = "";
+            cell2 = "";
+            cell3 = "";
+            cell4 = "";
+            continue;
+        }
 
-    //     if (cell === 1) {
-    //         cell1.push(data[i]);
-    //     } else if (cell === 2) {
-    //         cell2.push(data[i]);
-    //     } else if (cell === 3) {
-    //         cell3.push(data[i]);
-    //     } else if (cell === 4) {
-    //         cell4.push(data[i]);
-    //     }
+        if (cell === 1) {
+            cell1 += data[i];
+        } else if (cell === 2) {
+            cell2 += data[i];
+        } else if (cell === 3) {
+            cell3 += data[i];
+        } else if (cell === 4) {
+            cell4 += data[i];
+        }
 
-    //     if (cell === 4 && data[i + 1] === '\n' || i + 1 === data.length) {
-    //         console.log(cell1, cell2, cell3, cell4);
-    //     }
-    // }
-    
-
-    console.log(data.split(',').join(" ").split("\n"))
-    
-    const arrayOfData = data.split(',').join(" ").split("\n");
-    
-
-    for (i = 0; i < arrayOfData.length; i++){
-
-        console.log(arrayOfData.slice(i, i + 1))
-        
+        if (cell === 4 && data[i + 1] === '\n' || i + 1 === data.length) {
+            let newArray = [];
+            newArray.push(cell1, cell2, cell3, cell4)
+            console.log(newArray)
+            
+            
+        }
     }
+    
+
+    // console.log(data.split(',').join(" ").split("\n"))
+    
+    // const arrayOfData = data.split(',').join(" ").split("\n");
+    
+
+    // for (i = 0; i < arrayOfData.length; i++){
+
+    //     console.log(arrayOfData.slice(i, i + 1))
+        
+    // }
 
    
 
