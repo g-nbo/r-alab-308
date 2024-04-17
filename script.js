@@ -60,7 +60,7 @@ function dataCollection() {
 
     let cell = 1;
 
-    
+    let completeArray = [];
 
     for (let i = 0; i < data.length; i++) {
 
@@ -89,13 +89,16 @@ function dataCollection() {
         }
 
         if (cell === 4 && data[i + 1] === '\n' || i + 1 === data.length) {
-            let newArray = [];
-            newArray.push(cell1, cell2, cell3, cell4)
-            console.log(newArray)
-            
+            let dataArray = [];
+            dataArray.push(cell1, cell2, cell3, cell4);
+            console.log(dataArray);
+            completeArray.push(dataArray);
             
         }
     }
+
+    console.log(completeArray);
+    
     
 
     // console.log(data.split(',').join(" ").split("\n"))
