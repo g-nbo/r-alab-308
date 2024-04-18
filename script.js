@@ -100,19 +100,18 @@ function dataCollection() {
         
 
         if (data[i + 1] === '\n' || i + 1 === data.length) {
-            
-            // console.log(columns)
+
             filterCells = cellArr.filter(element => element)
             console.log(filterCells)
             
-            // let dataArray = [];
-            // dataArray.push(cellArr);
-            // completeArray.push(dataArray);
+            let dataArray = [];
+            dataArray.push(filterCells);
+            completeArray.push(dataArray);
             
         }
     }
 
-    // console.log(completeArray);
+    console.log(completeArray);
     
     
 
