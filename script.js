@@ -50,7 +50,7 @@
 // }
 
 
-function dataCollection() {
+function part2() {
     let data = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26";
     
     
@@ -59,6 +59,74 @@ function dataCollection() {
     let cellArr = [];
     let completeArray = [];
     let word = "";
+
+    for (let i = 0; i <= data.length; i++) {
+        
+        word += data[i];
+        
+        
+        if (data[i] === ',') {
+            
+            cellArr[i] = word.replace(",", "");
+            word = ""
+            
+        }
+
+        if (data[i + 1] === '\n') {
+            cellArr[i] = word.replace("\n", "");
+            word = ""
+        }
+
+        if (i + 1 === data.length) {
+            cellArr[i] = word;
+        }
+        
+        
+        if (data[i] === "\n") {
+            word = ""
+            cellArr = [];
+            continue;
+        }
+
+        
+        
+        
+
+        
+            
+        
+
+        if (data[i + 1] === '\n' || i + 1 === data.length) {
+
+            filterCells = cellArr.filter(element => element)
+            console.log(filterCells)
+            
+            let dataArray = [];
+            dataArray.push(filterCells);
+            completeArray.push(dataArray);
+            
+        }
+    }
+
+    console.log(completeArray);
+
+   
+
+    
+    
+}
+
+
+function part3() {
+    let data = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26";
+    
+    let doneBefore = 0;
+    let firstItArray = [];
+    
+    let cellArr = [];
+    const completeArray = [];
+    let word = "";
+    
 
     for (let i = 0; i <= data.length; i++) {
         
@@ -100,36 +168,36 @@ function dataCollection() {
         
 
         if (data[i + 1] === '\n' || i + 1 === data.length) {
-
+            if(!doneBefore) {
+                firstItArray = cellArr.filter(element => element);
+                doneBefore++
+                continue;
+            }
+           
             filterCells = cellArr.filter(element => element)
-            console.log(filterCells)
+            const arrTurnedObj = {...filterCells};
+
+            firstItArray.forEach((element, i) => {
+                arrTurnedObj[element] = arrTurnedObj[i];
+                delete arrTurnedObj[i]
+            })
             
+            
+            console.log(arrTurnedObj);
             let dataArray = [];
-            dataArray.push(filterCells);
+            dataArray.push(arrTurnedObj);
             completeArray.push(dataArray);
+
+            
             
         }
     }
-
+    
+    
     console.log(completeArray);
-    
-    
 
-    // console.log(data.split(',').join(" ").split("\n"))
-    
-    // const arrayOfData = data.split(',').join(" ").split("\n");
-    
-
-    // for (i = 0; i < arrayOfData.length; i++){
-
-    //     console.log(arrayOfData.slice(i, i + 1))
-        
-    // }
-
-   
-
-    
-    
 }
 
-dataCollection();
+part2();
+console.log("==========================================================")
+part3();
