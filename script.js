@@ -53,51 +53,66 @@
 function dataCollection() {
     let data = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26";
     
-    let cell1 = "";
-    let cell2 = "";
-    let cell3 = "";
-    let cell4 = "";
-
-    let cell = 1;
-
-    let completeArray = [];
-
-    for (let i = 0; i < data.length; i++) {
-
-        if (data[i] === ',') {
-            cell++;
-            continue;
-        }
     
+
+    
+    let cellArr = [];
+    let completeArray = [];
+    let word = "";
+
+    for (let i = 0; i <= data.length; i++) {
+        
+        word += data[i];
+        
+        
+        if (data[i] === ',') {
+            
+            cellArr[i] = word.replace(",", "");
+            word = ""
+            
+        }
+
+        if (data[i + 1] === '\n') {
+            cellArr[i] = word.replace("\n", "");
+            word = ""
+        }
+
+        if (i + 1 === data.length) {
+            cellArr[i] = word;
+        }
+        
+        
+        
+        
+        
         if (data[i] === "\n") {
-            cell = 1;
-            cell1 = "";
-            cell2 = "";
-            cell3 = "";
-            cell4 = "";
+            word = ""
+            cellArr = [];
             continue;
         }
 
-        if (cell === 1) {
-            cell1 += data[i];
-        } else if (cell === 2) {
-            cell2 += data[i];
-        } else if (cell === 3) {
-            cell3 += data[i];
-        } else if (cell === 4) {
-            cell4 += data[i];
-        }
+        
+        
+        
 
-        if (cell === 4 && data[i + 1] === '\n' || i + 1 === data.length) {
-            let dataArray = [];
-            dataArray.push(cell1, cell2, cell3, cell4);
-            console.log(dataArray);
-            completeArray.push(dataArray);
+        
+            
+        
+
+        if (data[i + 1] === '\n' || i + 1 === data.length) {
+            
+            // console.log(columns)
+            filterCells = cellArr.filter(element => element)
+            console.log(filterCells)
+            
+            // let dataArray = [];
+            // dataArray.push(cellArr);
+            // completeArray.push(dataArray);
             
         }
     }
 
-    console.log(completeArray);
+    // console.log(completeArray);
     
     
 
