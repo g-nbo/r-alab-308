@@ -1,59 +1,14 @@
 // // R-ALAB 308.4.1: Working with Data Collections
 
-
-// let data = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26";
-// // let data = "Index,Mass (kg),Spring 1 (m),Spring 2 (m)\n1,0.00,0.050,0.050\n2,0.49,0.066,0.066\n3,0.98,0.087,0.080\n4,1.47,0.116,0.108\n5,1.96,0.142,0.138\n6,2.45,0.166,0.158\n7,2.94,0.193,0.174\n8,3.43,0.204,0.192\n9,3.92,0.226,0.205\n10,4.41,0.238,0.232";
-
-
-// let cell1 = [];
-// let cell2 = [];
-// let cell3 = [];
-// let cell4 = [];
-// let cell = 1;
-// // rows
-
-// for (let i = 0; i < data.length; i++) {
-
-//     if (data[i] === ',') {
-//         cell++;
-//         continue;
-//     }
-
-//     if (data[i] === "\n") {
-//         cell = 1;
-//         cell1 = [];
-//         cell2 = [];
-//         cell3 = [];
-//         cell4 = [];
-//         continue;
-//     }
-
-//     switch (cell) {
-//         case 1:
-//             cell1 += data[i];
-//             break;
-//         case 2:
-//             cell2 += data[i];
-//             break;
-//         case 3:
-//             cell3 += data[i];
-//             break;
-//         case 4:
-//             cell4 += data[i];
-//             break;
-//     }
-
-//     if (cell === 4 && data[i + 1] === '\n' || i + 1 === data.length) {
-//         console.log(cell1, cell2, cell3, cell4);
-//     }
-
-// }
-
-
-function part2() {
+// Part 1: Refactoring Old Code
+// Part 2: Expanding Functionality
+function part1and2() {
+    // Original CSV String
     let data = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26";
     
+    // Store the number of columns in each row of data within the CSV, accept any number of columns
     let cellArr = [];
+    // Outer Array
     let completeArray = [];
     let word = "";
 
@@ -65,13 +20,13 @@ function part2() {
         if (data[i] === ',') {
             
             cellArr[i] = word.replace(",", "");
-            word = ""
+            word = "";
             
         }
 
         if (data[i + 1] === '\n') {
             cellArr[i] = word.replace("\n", "");
-            word = ""
+            word = "";
         }
 
         if (i + 1 === data.length) {
@@ -80,25 +35,24 @@ function part2() {
         
         
         if (data[i] === "\n") {
-            word = ""
+            word = "";
             cellArr = [];
             continue;
         }
 
         if (data[i + 1] === '\n' || i + 1 === data.length) {
-
+            //filter out empty space in arr
             filterCells = cellArr.filter(element => element)
-            // console.log(filterCells)
-            
+            // push filtered cells into Outer Array "completeArray"
             completeArray.push(filterCells);
             
         }
     }
-
     console.log(completeArray);
     
 }
 
+// Part 3: Transforming Data
 function part3() {
     let data = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26";
     
@@ -118,13 +72,13 @@ function part3() {
         if (data[i] === ',') {
             
             cellArr[i] = word.replace(",", "");
-            word = ""
+            word = "";
             
         }
 
         if (data[i + 1] === '\n') {
             cellArr[i] = word.replace("\n", "");
-            word = ""
+            word = "";
         }
 
         if (i + 1 === data.length) {
@@ -132,28 +86,30 @@ function part3() {
         }
         
         if (data[i] === "\n") {
-            word = ""
+            word = "";
             cellArr = [];
             continue;
         }     
 
         if (data[i + 1] === '\n' || i + 1 === data.length) {
+
+            // Only on the first iteration store the array in a "firstItArray" variable for later use
             if(!doneBefore) {
                 firstItArray = cellArr.filter(element => element);
-                doneBefore++
+                doneBefore++;
                 continue;
             }
-           
-            filterCells = cellArr.filter(element => element)
-            const arrTurnedObj = {...filterCells};
 
+            // Same Filter
+            filterCells = cellArr.filter(element => element)
+            // Turns the filtered Array into an object using the spread operator
+            const arrTurnedObj = {...filterCells};
+            // Iterate over each element in the first ever array and make its elements the keys for all arrays that come after it
             firstItArray.forEach((element, i) => {
                 arrTurnedObj[element.toLowerCase()] = arrTurnedObj[i];
-                delete arrTurnedObj[i]
+                // Delete old obj that have incorrect keys
+                delete arrTurnedObj[i];
             })
-            
-            
-            // console.log(arrTurnedObj);
             completeArray.push(arrTurnedObj);
 
             
@@ -166,6 +122,7 @@ function part3() {
 
 }
 
+// Part 4: Sorting and Manipulating Data
 function part4() {
     let data = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26";
     
@@ -185,13 +142,13 @@ function part4() {
         if (data[i] === ',') {
             
             cellArr[i] = word.replace(",", "");
-            word = ""
+            word = "";
             
         }
 
         if (data[i + 1] === '\n') {
             cellArr[i] = word.replace("\n", "");
-            word = ""
+            word = "";
         }
 
         if (i + 1 === data.length) {
@@ -199,7 +156,7 @@ function part4() {
         }
         
         if (data[i] === "\n") {
-            word = ""
+            word = "";
             cellArr = [];
             continue;
         }
@@ -207,7 +164,7 @@ function part4() {
         if (data[i + 1] === '\n' || i + 1 === data.length) {
             if(!doneBefore) {
                 firstItArray = cellArr.filter(element => element);
-                doneBefore++
+                doneBefore++;
                 continue;
             }
            
@@ -243,9 +200,10 @@ function part4() {
     });
 
     let avgAge = totalAge / completeArray.length;
-    console.log('Average Age of the group: ', avgAge)
+    console.log('Average Age of the group: ', avgAge);
 }
 
+// Part 5: Full Circle
 function part5() {
     let data = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26";
     
@@ -265,13 +223,13 @@ function part5() {
         if (data[i] === ',') {
             
             cellArr[i] = word.replace(",", "");
-            word = ""
+            word = "";
             
         }
 
         if (data[i + 1] === '\n') {
             cellArr[i] = word.replace("\n", "");
-            word = ""
+            word = "";
         }
 
         if (i + 1 === data.length) {
@@ -279,7 +237,7 @@ function part5() {
         }
         
         if (data[i] === "\n") {
-            word = ""
+            word = "";
             cellArr = [];
             continue;
         }
@@ -287,7 +245,7 @@ function part5() {
         if (data[i + 1] === '\n' || i + 1 === data.length) {
             if(!doneBefore) {
                 firstItArray = cellArr.filter(element => element);
-                doneBefore++
+                doneBefore++;
                 continue;
             }
            
@@ -310,20 +268,29 @@ function part5() {
     completeArray.splice(1, 0, { id: "48", name: "Barry", occupation: "Runner", age: "25" }); 
     // 3. Add following object to the end of the array:
     completeArray.push({ id: "7", name: "Bilbo", occupation: "None", age: "111" }); 
-    console.log(completeArray);
+    // console.log(completeArray);
 
 
     // Part 5: Transform the final set of data back into CSV format
-    console.log(completeArray.join(""))
+
+    let string = ""
+    completeArray.forEach((element) => {
+        string += JSON.stringify(element);
+    })
+    let stringWrap = "";
+    stringWrap += string.replaceAll('{', "").replaceAll("}", "\n").replaceAll(":", ",").replaceAll('"', "");
+    console.log(stringWrap);
+    console.log(data);
 
 
 }
 
-console.log("<=============== Part 2 ==================>")
-part2();
-console.log("<=============== Part 3 ==================>")
+console.log("<=============== Part 2 ==================>");
+part1and2();
+console.log("<=============== Part 3 ==================>");
 part3();
-console.log("<=============== Part 4 ==================>")
+console.log("<=============== Part 4 ==================>");
 part4();
-console.log("<=============== Part 5 ==================>")
+console.log("<=============== Part 5 ==================>");
 part5();
+console.log("<=============== Complete ================>");
