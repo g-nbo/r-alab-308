@@ -273,15 +273,16 @@ function part5() {
 
     // Part 5: Transform the final set of data back into CSV format
 
-    let string = ""
-    completeArray.forEach((element) => {
-        string += JSON.stringify(element);
-    })
-    let stringWrap = "";
-    stringWrap += string.replaceAll('{', "").replaceAll("}", "\n").replaceAll(":", ",").replaceAll('"', "");
-    console.log(stringWrap);
-    console.log(data);
+    let newCSV = "";
 
+    newCSV = Object.keys(completeArray[0]).toString();
+    
+    completeArray.forEach((element, i) => {
+        newCSV += "\n";
+        newCSV += Object.values(completeArray[i]).toString();
+    })
+    console.log(newCSV);
+    console.log(data);
 
 }
 
