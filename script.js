@@ -53,9 +53,6 @@
 function part2() {
     let data = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26";
     
-    
-
-    
     let cellArr = [];
     let completeArray = [];
     let word = "";
@@ -88,34 +85,19 @@ function part2() {
             continue;
         }
 
-        
-        
-        
-
-        
-            
-        
-
         if (data[i + 1] === '\n' || i + 1 === data.length) {
 
             filterCells = cellArr.filter(element => element)
-            console.log(filterCells)
+            // console.log(filterCells)
             
-            let dataArray = [];
-            dataArray.push(filterCells);
-            completeArray.push(dataArray);
+            completeArray.push(filterCells);
             
         }
     }
 
     console.log(completeArray);
-
-   
-
-    
     
 }
-
 
 function part3() {
     let data = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26";
@@ -149,23 +131,11 @@ function part3() {
             cellArr[i] = word;
         }
         
-        
-        
-        
-        
         if (data[i] === "\n") {
             word = ""
             cellArr = [];
             continue;
-        }
-
-        
-        
-        
-
-        
-            
-        
+        }     
 
         if (data[i + 1] === '\n' || i + 1 === data.length) {
             if(!doneBefore) {
@@ -178,15 +148,13 @@ function part3() {
             const arrTurnedObj = {...filterCells};
 
             firstItArray.forEach((element, i) => {
-                arrTurnedObj[element] = arrTurnedObj[i];
+                arrTurnedObj[element.toLowerCase()] = arrTurnedObj[i];
                 delete arrTurnedObj[i]
             })
             
             
-            console.log(arrTurnedObj);
-            let dataArray = [];
-            dataArray.push(arrTurnedObj);
-            completeArray.push(dataArray);
+            // console.log(arrTurnedObj);
+            completeArray.push(arrTurnedObj);
 
             
             
@@ -198,6 +166,164 @@ function part3() {
 
 }
 
+function part4() {
+    let data = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26";
+    
+    let doneBefore = 0;
+    let firstItArray = [];
+    
+    let cellArr = [];
+    const completeArray = [];
+    let word = "";
+    
+
+    for (let i = 0; i <= data.length; i++) {
+        
+        word += data[i];
+        
+        
+        if (data[i] === ',') {
+            
+            cellArr[i] = word.replace(",", "");
+            word = ""
+            
+        }
+
+        if (data[i + 1] === '\n') {
+            cellArr[i] = word.replace("\n", "");
+            word = ""
+        }
+
+        if (i + 1 === data.length) {
+            cellArr[i] = word;
+        }
+        
+        if (data[i] === "\n") {
+            word = ""
+            cellArr = [];
+            continue;
+        }
+
+        if (data[i + 1] === '\n' || i + 1 === data.length) {
+            if(!doneBefore) {
+                firstItArray = cellArr.filter(element => element);
+                doneBefore++
+                continue;
+            }
+           
+            filterCells = cellArr.filter(element => element)
+            const arrTurnedObj = {...filterCells};
+
+            firstItArray.forEach((element, i) => {
+                arrTurnedObj[element.toLowerCase()] = arrTurnedObj[i];
+                delete arrTurnedObj[i];
+            })
+            
+            
+            
+            completeArray.push(arrTurnedObj);
+            
+            
+            
+        }
+    }
+
+    // 1. Remove the last element from the array
+    completeArray.pop(); 
+    // 2. Insert the following object at index 1:
+    completeArray.splice(1, 0, { id: "48", name: "Barry", occupation: "Runner", age: "25" }); 
+    // 3. Add following object to the end of the array:
+    completeArray.push({ id: "7", name: "Bilbo", occupation: "None", age: "111" }); 
+    console.log(completeArray);
+
+    // Calculate the average age of the group.
+    let totalAge = 0;
+    completeArray.forEach((element) => {
+        totalAge += parseInt(element.age);
+    });
+
+    let avgAge = totalAge / completeArray.length;
+    console.log('Average Age of the group: ', avgAge)
+}
+
+function part5() {
+    let data = "ID,Name,Occupation,Age\n42,Bruce,Knight,41\n57,Bob,Fry Cook,19\n63,Blaine,Quiz Master,58\n98,Bill,Doctor's Assistant,26";
+    
+    let doneBefore = 0;
+    let firstItArray = [];
+    
+    let cellArr = [];
+    const completeArray = [];
+    let word = "";
+    
+
+    for (let i = 0; i <= data.length; i++) {
+        
+        word += data[i];
+        
+        
+        if (data[i] === ',') {
+            
+            cellArr[i] = word.replace(",", "");
+            word = ""
+            
+        }
+
+        if (data[i + 1] === '\n') {
+            cellArr[i] = word.replace("\n", "");
+            word = ""
+        }
+
+        if (i + 1 === data.length) {
+            cellArr[i] = word;
+        }
+        
+        if (data[i] === "\n") {
+            word = ""
+            cellArr = [];
+            continue;
+        }
+
+        if (data[i + 1] === '\n' || i + 1 === data.length) {
+            if(!doneBefore) {
+                firstItArray = cellArr.filter(element => element);
+                doneBefore++
+                continue;
+            }
+           
+            filterCells = cellArr.filter(element => element)
+            const arrTurnedObj = {...filterCells};
+
+            firstItArray.forEach((element, i) => {
+                arrTurnedObj[element.toLowerCase()] = arrTurnedObj[i];
+                delete arrTurnedObj[i];
+            })
+            
+            completeArray.push(arrTurnedObj);
+
+        }
+    }
+
+    // 1. Remove the last element from the array
+    completeArray.pop(); 
+    // 2. Insert the following object at index 1:
+    completeArray.splice(1, 0, { id: "48", name: "Barry", occupation: "Runner", age: "25" }); 
+    // 3. Add following object to the end of the array:
+    completeArray.push({ id: "7", name: "Bilbo", occupation: "None", age: "111" }); 
+    console.log(completeArray);
+
+
+    // Part 5: Transform the final set of data back into CSV format
+    console.log(completeArray.join(""))
+
+
+}
+
+console.log("<=============== Part 2 ==================>")
 part2();
-console.log("==========================================================")
+console.log("<=============== Part 3 ==================>")
 part3();
+console.log("<=============== Part 4 ==================>")
+part4();
+console.log("<=============== Part 5 ==================>")
+part5();
