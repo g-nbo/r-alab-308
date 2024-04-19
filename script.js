@@ -10,32 +10,33 @@ function part1and2() {
     let cellArr = [];
     // Outer Array
     let completeArray = [];
-    let word = "";
+    // Stores our cells
+    let cell = "";
 
     for (let i = 0; i <= data.length; i++) {
         
-        word += data[i];
+        cell += data[i];
         
         
         if (data[i] === ',') {
             
-            cellArr[i] = word.replace(",", "");
-            word = "";
+            cellArr[i] = cell.replace(",", "");
+            cell = "";
             
         }
 
         if (data[i + 1] === '\n') {
-            cellArr[i] = word.replace("\n", "");
-            word = "";
+            cellArr[i] = cell.replace("\n", "");
+            cell = "";
         }
 
         if (i + 1 === data.length) {
-            cellArr[i] = word;
+            cellArr[i] = cell;
         }
         
         
         if (data[i] === "\n") {
-            word = "";
+            cell = "";
             cellArr = [];
             continue;
         }
@@ -61,32 +62,32 @@ function part3() {
     
     let cellArr = [];
     const completeArray = [];
-    let word = "";
+    let cell = "";
     
 
     for (let i = 0; i <= data.length; i++) {
         
-        word += data[i];
+        cell += data[i];
         
         
         if (data[i] === ',') {
             
-            cellArr[i] = word.replace(",", "");
-            word = "";
+            cellArr[i] = cell.replace(",", "");
+            cell = "";
             
         }
 
         if (data[i + 1] === '\n') {
-            cellArr[i] = word.replace("\n", "");
-            word = "";
+            cellArr[i] = cell.replace("\n", "");
+            cell = "";
         }
 
         if (i + 1 === data.length) {
-            cellArr[i] = word;
+            cellArr[i] = cell;
         }
         
         if (data[i] === "\n") {
-            word = "";
+            cell = "";
             cellArr = [];
             continue;
         }     
@@ -131,32 +132,32 @@ function part4() {
     
     let cellArr = [];
     const completeArray = [];
-    let word = "";
+    let cell = "";
     
 
     for (let i = 0; i <= data.length; i++) {
         
-        word += data[i];
+        cell += data[i];
         
         
         if (data[i] === ',') {
             
-            cellArr[i] = word.replace(",", "");
-            word = "";
+            cellArr[i] = cell.replace(",", "");
+            cell = "";
             
         }
 
         if (data[i + 1] === '\n') {
-            cellArr[i] = word.replace("\n", "");
-            word = "";
+            cellArr[i] = cell.replace("\n", "");
+            cell = "";
         }
 
         if (i + 1 === data.length) {
-            cellArr[i] = word;
+            cellArr[i] = cell;
         }
         
         if (data[i] === "\n") {
-            word = "";
+            cell = "";
             cellArr = [];
             continue;
         }
@@ -212,32 +213,32 @@ function part5() {
     
     let cellArr = [];
     const completeArray = [];
-    let word = "";
+    let cell = "";
     
 
     for (let i = 0; i <= data.length; i++) {
         
-        word += data[i];
+        cell += data[i];
         
         
         if (data[i] === ',') {
             
-            cellArr[i] = word.replace(",", "");
-            word = "";
+            cellArr[i] = cell.replace(",", "");
+            cell = "";
             
         }
 
         if (data[i + 1] === '\n') {
-            cellArr[i] = word.replace("\n", "");
-            word = "";
+            cellArr[i] = cell.replace("\n", "");
+            cell = "";
         }
 
         if (i + 1 === data.length) {
-            cellArr[i] = word;
+            cellArr[i] = cell;
         }
         
         if (data[i] === "\n") {
-            word = "";
+            cell = "";
             cellArr = [];
             continue;
         }
@@ -271,19 +272,19 @@ function part5() {
     // console.log(completeArray);
 
 
-    // Part 5: Transform the final set of data back into CSV format
 
+    // Transform the final set of data back into CSV format
     let newCSV = "";
-
     newCSV = Object.keys(completeArray[0]).toString();
     
     completeArray.forEach((element, i) => {
         newCSV += "\n";
         newCSV += Object.values(completeArray[i]).toString();
     })
+
     console.log(newCSV);
     console.log(data);
-
+    
 }
 
 console.log("<=============== Part 2 ==================>");
